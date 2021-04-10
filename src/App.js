@@ -2,7 +2,7 @@ import {useState} from 'react'
 import styled from 'styled-components'
 
 import useFetchGithubJobs from './dependencies/useFetchGithubJobs'
-import JobCard from './components/JobCard'
+import JobCard from './components/JobsCard'
 
 const AppContainer = styled.div`
 
