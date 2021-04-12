@@ -1,33 +1,55 @@
-import {useState} from 'react'
-import styled from 'styled-components'
+import {useState, useEffect} from 'react'
 
 import useFetchGithubJobs from './dependencies/useFetchGithubJobs'
 import JobCard from './components/JobsCard'
+import Navbar from './components/Navbar'
 
-const AppContainer = styled.div`
+import styled, { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme, GlobalStyles } from "./ThemeProvider/themes";
 
-`
-const Header = styled.header``
+
+const StyledApp = styled.div`
+  color: ${(props) => props.theme.fontColor};
+`;
+
 const Main = styled.main``
 
 function App() {
-
-  const [colorTheme, setColorTheme] = useState('app-light')
-  const handleTheme = (e) =>{
-    e.preventDefault()
-    if(colorTheme === 'app-light') setColorTheme('app-dark')
-    else setColorTheme('app-light')
-  }
-
   const [params, setParams] = useState({})
   const [page, setPage] = useState(1)
   const {jobs, loading, error} = useFetchGithubJobs()
 
+  // THEME HANDLER
+  const [isTheme, setTheme] = useState("light");
+  useEffect(() => {
+    const storageTheme = localStorage.getItem("colorTheme");
+    if (storageTheme) {
+     ( storageTheme === "light")
+        ? setTheme("light")
+        : setTheme("dark");
+    } else {
+      setTheme("light");
+      localStorage.setItem("colorTheme", "light");
+    }
+  }, []);
+
+const handleThemeSwitch = () => {
+
+    if (isTheme === "light") {
+      setTheme("dark");
+      localStorage.setItem("colorTheme", "dark");
+    } else {
+      setTheme("light");
+      localStorage.setItem("colorTheme", "light");
+    }
+  };
+
   return (
-    <AppContainer className={colorTheme}>
-      <Header>
-        <button onClick={handleTheme}>theme</button>
-      </Header>
+    <ThemeProvider theme={isTheme === "light" ? lightTheme : darkTheme}>
+    <GlobalStyles />
+    <StyledApp>
+      <Navbar  handleThemeSwitch={handleThemeSwitch}>
+      </Navbar>
       <Main>
         {loading && <p>loading</p>}
         {error && <p>error</p>}
@@ -37,7 +59,8 @@ function App() {
           })
         }
       </Main>
-    </AppContainer>
+      </StyledApp>
+    </ThemeProvider>
   );
 }
 
