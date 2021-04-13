@@ -2,9 +2,9 @@ import {useReducer, useEffect} from 'react'
 import axios from 'axios'
 
 // temp api url --- cors issue on localhost
-// const GITHUB_API_URL = 'http://localhost:3000/jobs.json'   
+const GITHUB_API_URL = 'http://localhost:3000/jobs.json'   
 
-const GITHUB_API_URL = 'https://jobs.github.com/positions.json'   
+// const GITHUB_API_URL = 'https://jobs.github.com/positions.json'   
 
 const ACTIONS = {
     MAKE_REQUEST: 'make-request',
