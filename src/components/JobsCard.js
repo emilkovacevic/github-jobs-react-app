@@ -1,9 +1,9 @@
 import React from 'react'
 
-function JobsCard() {
+function JobsCard({job}) {
     return (
         <div>
-            
+            {job}
         </div>
     )
 }

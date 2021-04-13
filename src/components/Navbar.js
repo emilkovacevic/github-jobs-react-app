@@ -2,33 +2,91 @@ import React, { useState, useLayoutEffect } from 'react'
 import styled from 'styled-components'
 
 
-const NavbarWrapper = styled.div`
-padding:1em;
-background: gray;
-  nav{
-    display:flex;
-    justify-content:space-between;
-    max-width:1280px;
-    margin:auto;
-  }
+const NavbarWrapper = styled.nav`
+padding: 1em 0;
+position: -webkit-sticky; /* Safari */
+position: sticky;
+top: 0;
+
+div{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  justify-items: space-between;
+  max-width:1280px;
+  margin:0;
+  padding:0 0.5em;
+}
   button{
-    margin: 0 1em;
-    padding: 0 1em;
+    cursor:pointer;
+    padding:0 1em;
+    max-width:120px;
+    border:none;
+    outline:none;
+    text-transform:uppercase;
+    :hover{
+      color: ${props => props.theme.button.hover};
+    }
+  }
+  a{
+    color: ${props => props.theme.a.color};
+    text-transform:uppercase;
   }
   ul{
-    display:flex;
     list-style-type:none;
-    li{
-      margin: 0 1em;
+    display:flex;
+    align-items:center;
+    justify-content:space-evenly;
+    text-align:center;
+    @media (max-width: 960px){
+      flex-direction:column;
+      justify-content:space-evenly;
+      align-items:justify;
     }
-    @media (max-width: 960){
-      display:block;
+  }
+    li {
+      min-width:100px;
+      a{
+        :hover, :focus{
+          color: ${props => props.theme.a.hover};
+        }
+      }
     }
+  form{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-flow: row;
+  text-align:left;
+  label{
+    margin-right:1rem;
+    align-self:center;
+    color: ${props => props.theme.label.color};
+  }
+  input{
+    margin:1rem 0;
+    padding: 0 5px;
+    align-self:center;
+    border:1px solid ${props => props.theme.input.color};
+  }
+  @media (min-width: 960px){
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+.nav-toggler{
+  position:absolute;
+  right:0;
+  bottom:0.8em;
+}
+`
+const Logo = styled.a`
+  display:hidden;
+  @media (min-width: 960px){
+    display:block;
+    padding:0;
+    margin:auto 0;
   }
 `
 
-
-function Navbar({ handleThemeSwitch }) {
+function Navbar({ handleThemeSwitch, button, params, onParamChange }) {
   const [menu, setMenu] = useState(false)
 
   function useWindowsSize() {
@@ -44,34 +102,53 @@ function Navbar({ handleThemeSwitch }) {
         setMenu(!menu)
       }
     }, []);
-    return size ;
+    return size;
   }
 
   const [width] = useWindowsSize()
 
-  function handleToggleMenu (){
+  function handleToggleMenu() {
     setMenu(!menu)
   }
 
   return (
-    <NavbarWrapper>
-      <nav>
-        <p>LOGO</p>
-        <div>
-
+    <NavbarWrapper button={button} id="Navbar">
+      <div>
+        <Logo href="index.html" className="logo">LOGO</Logo>
+        <div className="nav-items">
           {
-            width < 960 && !menu ? <div><button onClick={handleToggleMenu}>menu</button><button onClick={handleThemeSwitch}>theme</button></div>
+            width < 960 && !menu ?
+              <div className="nav-toggler">
+                <button onClick={handleToggleMenu}>
+                  menu
+              </button>
+              </div>
               :
               <ul>
-               {width < 960 &&  <li><button onClick={handleToggleMenu}>Close</button></li>}
-                <li>about</li>
-                <li>about</li>
-                <li>about</li>
-                <button onClick={handleThemeSwitch}>theme</button>
+                {width < 960 && <li><button onChange={onParamChange} value={params.description} onClick={handleToggleMenu}>Close</button></li>}
+                <li>
+                  <span>Search jobs</span>
+                  <form>
+                    <div>
+                      <label>Description</label>
+                      <input onChange={onParamChange} value={params.description} name="description" type="text" />
+                    </div>
+             
+                    <div>
+                    <label>Location</label>
+                    <input onChange={onParamChange} value={params.location} name="location" type="text"></input>
+                    </div>           
+                    <div>
+                      <label>FullTime</label>
+                      <input onChange={onParamChange} value={params.full_time} name="full_time" id="full-time" label="Only Full Time" type="checkbox" ></input>
+                    </div>
+                  </form>
+                </li>
+                <li><button onClick={handleThemeSwitch}>change theme</button></li>
               </ul>
           }
         </div>
-      </nav>
+      </div>
     </NavbarWrapper>
   )
 }

@@ -1,6 +1,9 @@
 import {useReducer, useEffect} from 'react'
 import axios from 'axios'
 
+// temp api url --- cors issue on localhost
+// const GITHUB_API_URL = 'http://localhost:3000/jobs.json'   
+
 const GITHUB_API_URL = 'https://jobs.github.com/positions.json'   
 
 const ACTIONS = {
@@ -29,7 +32,7 @@ export default function useFetchGithubJobs(params, page) {
     useEffect(() => {
         const cancelREQ_Token = axios.CancelToken.source()
         dispatch({ type: ACTIONS.MAKE_REQUEST })
-        axios.get(GITHUB_API_URL,
+        axios.get(GITHUB_API_URL, 
             {
                 cancelREQ_Token: cancelREQ_Token.token,
                 params: { markdown: true, page: page, ...params }
