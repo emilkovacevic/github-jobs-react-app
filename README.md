@@ -1,5 +1,5 @@
 # React App to browse github jobs
-[Live](https://githubjobs-98201.web.app)
+
 ## About
 * This project uses react and github jobs api
 
