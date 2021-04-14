@@ -1,26 +1,18 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const Header = styled.header`
+  text-align:center;
+  h1{
+    margin-top:1em;
+    color: ${props => props.theme.nav.background};}
+`
 
 function PageInfo() {
     return (
-      <div>
-        <article>
-        <h1>React Project by Emil Kovacevic</h1>
-        <p>This website uses github jobs api</p>
-        <div>
-          <p>Source code:
-        <a href="https://github.com/emilkovacevic/github-jobs-react-app">
-              <span className='github-link'>HERE</span>
-            </a>
-          </p>
-        </div>
-      </article>
-      <article>
-        <h2>IMPORTANT</h2>
-        <p>If you are running this project on localhost visit <br/>
-           <a href="https://cors-anywhere.herokuapp.com/corsdemo">THIS LINK</a> <br/>
-           and click on request temporary acces to demo server</p>
-      </article>
-      </div>
+      <Header>
+        <h1>React Project with github job api</h1>
+      </Header>
     )
 }
 

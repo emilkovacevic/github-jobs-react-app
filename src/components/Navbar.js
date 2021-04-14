@@ -24,7 +24,7 @@ div{
     outline:none;
     text-transform:uppercase;
     :hover{
-      color: ${props => props.theme.button.hover};
+      color: ${props => props.theme.body};
     }
   }
   a{

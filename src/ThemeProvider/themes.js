@@ -9,19 +9,22 @@ export const lightTheme = {
     text: "black",
     hover: 'red'
   },
+  footer: {
+    background: "#474747",
+    color:"white"
+  },
   label: {
-    color: 'black'
+    color: 'white'
   },
   input: {
     color: 'black'
   },
+  a:{
+    color: 'white',
+  },
   nav: {
     background: "gray",
     color: "#a3abb8",
-  },
-  a: {
-    color: "blue",
-    hover: "green"
   },
   p: "black",
   heading: "black",
@@ -37,19 +40,21 @@ export const darkTheme = {
     text: "#66fcf1",
     hover: 'yellow'
   },
+  footer: {
+    background: "#474747"
+  },
   label: {
     color: 'white'
   },
   input: {
     color: 'white'
   },
+  a:{
+    color: 'white',
+  },
   nav: {
     background: "#3b4a5c",
     color: "red"
-  },
-  a: {
-    color: "#66fcf1",
-    hover: "red"
   },
   p: "whitesmoke",
   heading: "whitesmoke",
@@ -74,14 +79,15 @@ export const GlobalStyles = createGlobalStyle`
   nav {
     color: ${(props) => props.theme.nav.text};
   }
-
-  h1 {
-    color: ${(props) => props.theme.heading}
-  };
   h2 {
     color: ${(props) => props.theme.heading}
-  };
-
+  }
+  h3 {
+    color: ${(props) => props.theme.heading}
+  }
+  a {
+    color: ${(props) => props.theme.p}
+  }
   span {
     color: ${(props) => props.theme.span}
   }
