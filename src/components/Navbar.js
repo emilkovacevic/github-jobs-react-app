@@ -3,17 +3,17 @@ import styled from 'styled-components'
 
 
 const NavbarWrapper = styled.nav`
+overflow: hidden;
 padding: 1em 0;
 position: -webkit-sticky; /* Safari */
 position: sticky;
+border-radius:0 0 25px 25px;
 top: 0;
 
 div{
   display:grid;
   grid-template-columns:1fr 1fr;
   justify-items: space-between;
-  max-width:1280px;
-  margin:0;
   padding:0 0.5em;
 }
   button{
@@ -44,7 +44,7 @@ div{
     }
   }
     li {
-      min-width:100px;
+      padding-right:1em;
       a{
         :hover, :focus{
           color: ${props => props.theme.a.hover};
@@ -57,24 +57,29 @@ div{
   grid-auto-flow: row;
   text-align:left;
   label{
-    margin-right:1rem;
     align-self:center;
     color: ${props => props.theme.label.color};
   }
   input{
-    margin:1rem 0;
-    padding: 0 5px;
+    margin:1em 5px;
     align-self:center;
     border:1px solid ${props => props.theme.input.color};
+  }
+  .nav-settings{
+    display:flex;
+    max-width:fit-content;
+    justify-content:space-between;
   }
   @media (min-width: 960px){
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 .nav-toggler{
+  @media (min-width: 960px){
   position:absolute;
   right:0;
-  bottom:0.8em;
+  bottom:1rem;
+  }
 }
 `
 const Logo = styled.a`
@@ -114,7 +119,7 @@ function Navbar({ handleThemeSwitch, button, params, onParamChange }) {
   return (
     <NavbarWrapper button={button} id="Navbar">
       <div>
-        <Logo href="index.html" className="logo">LOGO</Logo>
+        <Logo href="./index.html" className="logo">Github Jobs</Logo>
         <div className="nav-items">
           {
             width < 960 && !menu ?
@@ -124,8 +129,9 @@ function Navbar({ handleThemeSwitch, button, params, onParamChange }) {
               </button>
               </div>
               :
+              <div>
+
               <ul>
-                {width < 960 && <li><button onChange={onParamChange} value={params.description} onClick={handleToggleMenu}>Close</button></li>}
                 <li>
                   <span>Search jobs</span>
                   <form>
@@ -139,13 +145,17 @@ function Navbar({ handleThemeSwitch, button, params, onParamChange }) {
                     <input onChange={onParamChange} value={params.location} name="location" type="text"></input>
                     </div>           
                     <div>
-                      <label>FullTime</label>
+                      <label>Full_Time</label>
                       <input onChange={onParamChange} value={params.full_time} name="full_time" id="full-time" label="Only Full Time" type="checkbox" ></input>
                     </div>
                   </form>
                 </li>
-                <li><button onClick={handleThemeSwitch}>change theme</button></li>
               </ul>
+              <ul className="nav-settings">
+                  {width < 960 && <li><button onChange={onParamChange} value={params.description} onClick={handleToggleMenu}>Close</button></li>}
+                  <li><button onClick={handleThemeSwitch}>change theme</button></li>     
+                </ul>
+              </div>
           }
         </div>
       </div>

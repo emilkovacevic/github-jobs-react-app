@@ -6,3 +6,10 @@
   border:none;
   text-decoration: none;
 }
+
+button{
+  cursor: pointer;
+}
+h1,h2,h3{
+  padding:0.5em 0;
+}

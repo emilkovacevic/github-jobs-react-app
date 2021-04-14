@@ -2,54 +2,56 @@ import { createGlobalStyle } from "styled-components";
 
 export const lightTheme = {
   body: "#eff0f3",
+  appBg: "white",
   fontColor: "#2B8FD4",
   button: {
     background: "none",
-    text:"black",
+    text: "black",
     hover: 'red'
   },
-  label:{
+  label: {
     color: 'black'
   },
-  input:{
+  input: {
     color: 'black'
   },
-  nav:{
-    background: "#fefefe",
+  nav: {
+    background: "gray",
     color: "#a3abb8",
   },
-  a:{
+  a: {
     color: "blue",
     hover: "green"
   },
-  p:"black",
+  p: "black",
   heading: "black",
-  span:"black",
+  span: "black",
 };
 
 export const darkTheme = {
   body: "#1f2833",
+  appBg: "gray",
   fontColor: "#FFCB9A",
   button: {
     background: "none",
-    text:"#66fcf1",
+    text: "#66fcf1",
     hover: 'yellow'
   },
-  label:{
+  label: {
     color: 'white'
   },
-  input:{
+  input: {
     color: 'white'
   },
-  nav:{
+  nav: {
     background: "#3b4a5c",
     color: "red"
   },
-  a:{
+  a: {
     color: "#66fcf1",
     hover: "red"
   },
-  p:"whitesmoke",
+  p: "whitesmoke",
   heading: "whitesmoke",
   span: "whitesmoke"
 };
@@ -58,17 +60,29 @@ export const GlobalStyles = createGlobalStyle`
 	body {
 		background-color: ${(props) => props.theme.body};
 	}
+
   button {
     background: ${(props) => props.theme.button.background};
     color: ${(props) => props.theme.button.text};
   }
+
   p {color: ${(props) => props.theme.p};}
   #Navbar{
     background: ${(props) => props.theme.nav.background};
   }
+
   nav {
     color: ${(props) => props.theme.nav.text};
   }
-  h1 {color: ${(props)=> props.theme.heading}};
-  span {color: ${(props) => props.theme.span}}
+
+  h1 {
+    color: ${(props) => props.theme.heading}
+  };
+  h2 {
+    color: ${(props) => props.theme.heading}
+  };
+
+  span {
+    color: ${(props) => props.theme.span}
+  }
 `;
