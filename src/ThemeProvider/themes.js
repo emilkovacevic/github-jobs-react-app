@@ -7,7 +7,7 @@ export const lightTheme = {
   button: {
     background: "none",
     text: "black",
-    hover: 'red'
+    hover: 'green'
   },
   footer: {
     background: "#474747",
@@ -27,8 +27,9 @@ export const lightTheme = {
     color: "#a3abb8",
   },
   p: "black",
+  li: "black",
   heading: "black",
-  span: "black",
+  span: "black"
 };
 
 export const darkTheme = {
@@ -54,11 +55,12 @@ export const darkTheme = {
   },
   nav: {
     background: "#3b4a5c",
-    color: "red"
+    color: "blue"
   },
   p: "whitesmoke",
+  li: "whitesmoke",
   heading: "whitesmoke",
-  span: "whitesmoke"
+  span: "whitesmoke",
 };
 
 export const GlobalStyles = createGlobalStyle`
@@ -86,7 +88,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${(props) => props.theme.heading}
   }
   a {
-    color: ${(props) => props.theme.p}
+    color: ${(props) => props.theme.a}
   }
   span {
     color: ${(props) => props.theme.span}

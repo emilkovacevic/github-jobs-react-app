@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react'
-import useFetchGithubJobs from './dependencies/useFetchGithubJobs'
+import useFetchGithubJobs from './fetch/useFetchGithubJobs'
+
+import Error from './components/Error'
+import Loading from './components/Loading'
+
 import JobCard from './components/JobsCard'
 import Navbar from './components/Navbar'
 import Pagination from './components/Pagination'
@@ -11,6 +15,10 @@ import { lightTheme, darkTheme, GlobalStyles } from "./ThemeProvider/themes";
 
 
 const StyledApp = styled.div`
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
   background: ${props => props.theme.appBg};
   max-width: 1280px;
   margin: 0 auto;
@@ -80,16 +88,17 @@ function App() {
         />
         <Main>
           <PageInfo/>
+          {!error && !loading ? <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} /> : null}
 
-          <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
-          {loading && <p>loading</p>}
-          {error && <p>error</p>}
+          {loading && <Loading />}
+          {error && <Error/>}
           <div>
               {jobs.map(job => {
                 return <JobCard key={job.id} job={job} />
               })}
           </div>
-          <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
+
+          {!error && !loading ? <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} /> : null}
         </Main>
         <Footer />
       </StyledApp>

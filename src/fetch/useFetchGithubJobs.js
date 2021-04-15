@@ -8,6 +8,12 @@ const ACTIONS = {
   UPDATE_HAS_NEXT_PAGE: 'update-has-next-page'
 }
 
+// for hosting link
+//'https://jobs.github.com/positions.json'
+
+// for localhost using heroku proxy to resolve cors - replace BASE_URL with link below
+// 'http://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json'
+
 const BASE_URL = 'http://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json'
 
 function reducer(state, action) {
@@ -32,8 +38,8 @@ export default function useFetchJobs(params, page) {
     const cancelToken1 = axios.CancelToken.source()
     dispatch({ type: ACTIONS.MAKE_REQUEST })
     axios.get(BASE_URL, {
-      cancelToken: cancelToken1.token,
-      params: { markdown: true, page: page, ...params }
+        cancelToken: cancelToken1.token,
+        params: { markdown: true, page: page, ...params }
     }).then(res => {
       dispatch({ type: ACTIONS.GET_DATA, payload: { jobs: res.data } }) 
     }).catch(e => {

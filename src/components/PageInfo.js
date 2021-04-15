@@ -11,7 +11,7 @@ const Header = styled.header`
 function PageInfo() {
     return (
       <Header>
-        <h1>React Project with github job api</h1>
+        <h1>React project with github job api</h1>
       </Header>
     )
 }
