@@ -20,9 +20,7 @@ const StyledApp = styled.div`
   flex-direction:column;
   justify-content:space-between;
   background: ${props => props.theme.appBg};
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1em;
+  padding: 0;
 `;
 
 const Main = styled.main`
@@ -30,6 +28,8 @@ article{
   color: ${props => props.theme.p};
   margin:2em 0;
   text-align:center;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 .github-link{
   color:red;
@@ -38,7 +38,7 @@ article{
 `
 
 function App() {
-  const [params, setParams] = useState({})
+  const [params, setParams] = useState({description: "", location: "", full_time: ""})
   const [page, setPage] = useState(1)
   const { jobs, loading, error, hasNextPage } = useFetchGithubJobs(params, page)
 
@@ -85,6 +85,7 @@ function App() {
           handleThemeSwitch={handleThemeSwitch}
           params={params}
           onParamChange={handleParamChange}
+          theme={isTheme}
         />
         <Main>
           <PageInfo/>

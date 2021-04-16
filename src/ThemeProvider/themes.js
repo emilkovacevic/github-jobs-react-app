@@ -4,14 +4,16 @@ export const lightTheme = {
   body: "#eff0f3",
   appBg: "white",
   fontColor: "#2B8FD4",
+  info:"black",
+  openCard: "whitesmoke",
   button: {
     background: "none",
     text: "black",
     hover: 'green'
   },
   footer: {
-    background: "#474747",
-    color:"white"
+    background: "gray",
+    color: "white"
   },
   label: {
     color: 'white'
@@ -19,7 +21,7 @@ export const lightTheme = {
   input: {
     color: 'black'
   },
-  a:{
+  a: {
     color: 'white',
   },
   nav: {
@@ -28,21 +30,23 @@ export const lightTheme = {
   },
   p: "black",
   li: "black",
-  heading: "black",
+  heading: "whitesmoke",
   span: "black"
 };
 
 export const darkTheme = {
   body: "#1f2833",
-  appBg: "gray",
+  appBg: "#383838",
   fontColor: "#FFCB9A",
+  openCard: "66fcf1",
   button: {
     background: "none",
     text: "#66fcf1",
     hover: 'yellow'
   },
+  info:"#67aba5",
   footer: {
-    background: "#474747"
+    background: "#3b4a5c"
   },
   label: {
     color: 'white'
@@ -50,7 +54,7 @@ export const darkTheme = {
   input: {
     color: 'white'
   },
-  a:{
+  a: {
     color: 'white',
   },
   nav: {

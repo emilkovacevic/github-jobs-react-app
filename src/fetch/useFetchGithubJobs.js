@@ -1,20 +1,21 @@
 import { useReducer, useEffect } from 'react'
 import axios from 'axios'
 
+// for hosting link
+//'https://jobs.github.com/positions.json'
+
+// for localhost using heroku proxy to resolve cors
+// 'http://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json'
+
+// using dedicated backend server to fetch api
+const BASE_URL = 'https://githubjobsemil.herokuapp.com'
+
 const ACTIONS = {
   MAKE_REQUEST: 'make-request',
   GET_DATA: 'get-data',
   ERROR: 'error',
   UPDATE_HAS_NEXT_PAGE: 'update-has-next-page'
 }
-
-// for hosting link
-//'https://jobs.github.com/positions.json'
-
-// for localhost using heroku proxy to resolve cors - replace BASE_URL with link below
-// 'http://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json'
-
-const BASE_URL = 'http://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json'
 
 function reducer(state, action) {
   switch (action.type) {

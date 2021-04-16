@@ -5,7 +5,7 @@ const Header = styled.header`
   text-align:center;
   h1{
     margin-top:1em;
-    color: ${props => props.theme.nav.background};}
+    color: ${props => props.theme.info};}
 `
 
 function PageInfo() {

@@ -7,7 +7,6 @@ overflow: hidden;
 padding: 1em 0;
 position: -webkit-sticky; /* Safari */
 position: sticky;
-border-radius:0 0 25px 25px;
 top: 0;
 
 div{
@@ -15,6 +14,8 @@ div{
   grid-template-columns:1fr 1fr;
   justify-items: space-between;
   padding:0 0.5em;
+  max-width: 1280px;
+  margin: 0 auto;
 }
   button{
     cursor:pointer;
@@ -34,6 +35,7 @@ div{
   ul{
     list-style-type:none;
     display:flex;
+    flex-wrap:wrap;
     align-items:center;
     justify-content:space-evenly;
     text-align:center;
@@ -67,6 +69,7 @@ div{
   }
   .nav-settings{
     display:flex;
+    flex-wrap:wrap;
     max-width:fit-content;
     justify-content:space-between;
   }
@@ -91,7 +94,7 @@ const Logo = styled.a`
   }
 `
 
-function Navbar({ handleThemeSwitch, button, params, onParamChange }) {
+function Navbar({ handleThemeSwitch, button, params, onParamChange, theme}) {
   const [menu, setMenu] = useState(false)
 
   function useWindowsSize() {
@@ -153,7 +156,9 @@ function Navbar({ handleThemeSwitch, button, params, onParamChange }) {
               </ul>
               <ul className="nav-settings">
                   {width < 960 && <li><button onChange={onParamChange} value={params.description} onClick={handleToggleMenu}>Close</button></li>}
-                  <li><button onClick={handleThemeSwitch}>change theme</button></li>     
+                  <li><button onClick={handleThemeSwitch}>
+                    {theme ==='dark' ? 'go light' : 'go dark'}
+                    </button></li>     
                 </ul>
               </div>
           }

@@ -1,5 +1,4 @@
 # React App to browse github jobs
-
 ## About
 * This project uses react and github jobs api
 

@@ -2,16 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Component = styled.div`
-width:fit-content;
-margin:auto;
+max-width: 1280px;
+margin: 1em auto;
 margin-top:2em;
-margin-right:0;
 padding:0 1em;
 color: ${props => props.theme.p};
 display:flex;
-justify-content:center;
+justify-content:flex-end;
 align-items:center;
-border-bottom: 1px solid ${props => props.theme.p};
 div, button{
   margin:10px;
   font-size:16px;
