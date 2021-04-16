@@ -3,90 +3,58 @@ import styled from 'styled-components'
 
 
 const NavbarWrapper = styled.nav`
-overflow: hidden;
-padding: 1em 0;
-position: -webkit-sticky; /* Safari */
-position: sticky;
-top: 0;
+.nav-wrapper{
+  max-width:1280px;
+  margin:auto;
+  padding:0 1em;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:1.5rem;
+}
+  *{
+    color: ${props => props.theme.p};
+  }
 
-div{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  justify-items: space-between;
-  padding:0 0.5em;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-  button{
-    cursor:pointer;
-    padding:0 1em;
-    max-width:120px;
-    border:none;
-    outline:none;
-    text-transform:uppercase;
-    :hover{
-      color: ${props => props.theme.body};
-    }
-  }
-  a{
-    color: ${props => props.theme.a.color};
-    text-transform:uppercase;
-  }
   ul{
+    display:flex;
     list-style-type:none;
+
+    label{padding-right:10px;}
+
+  }
+
+  .nav-items__options{
     display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:space-evenly;
-    text-align:center;
-    @media (max-width: 960px){
-      flex-direction:column;
-      justify-content:space-evenly;
-      align-items:justify;
-    }
   }
-    li {
-      padding-right:1em;
-      a{
-        :hover, :focus{
-          color: ${props => props.theme.a.hover};
-        }
-      }
-    }
-  form{
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-flow: row;
-  text-align:left;
-  label{
-    align-self:center;
-    color: ${props => props.theme.label.color};
-  }
-  input{
-    margin:1em 5px;
-    align-self:center;
-    border:1px solid ${props => props.theme.input.color};
-  }
+
   .nav-settings{
-    display:flex;
-    flex-wrap:wrap;
-    max-width:fit-content;
-    justify-content:space-between;
+    display:block;
+    text-align:center;
   }
+    button{
+        border: 1px solid ${props => props.theme.p};
+        margin-bottom:1em;
+        padding: 5px;
+        border-radius:5px;
+    }
+
   @media (min-width: 960px){
-    grid-template-columns: 1fr 1fr 1fr;
+   .nav-items__options{
+   flex-direction:row;
+   text-align:center;
+   form{
+     display:flex;
+     gap:1em;
+   }
   }
-}
-.nav-toggler{
-  @media (min-width: 960px){
-  position:absolute;
-  right:0;
-  bottom:1rem;
-  }
+
 }
 `
 const Logo = styled.a`
   display:hidden;
+  color: ${props => props.theme.p};
+  font-size:2rem;
   @media (min-width: 960px){
     display:block;
     padding:0;
@@ -121,20 +89,24 @@ function Navbar({ handleThemeSwitch, button, params, onParamChange, theme}) {
 
   return (
     <NavbarWrapper button={button} id="Navbar">
-      <div>
+      <div className="nav-wrapper">
         <Logo href="./index.html" className="logo">Github Jobs</Logo>
         <div className="nav-items">
           {
             width < 960 && !menu ?
               <div className="nav-toggler">
                 <button onClick={handleToggleMenu}>
-                  menu
+                  <svg viewBox="0 0 100 80" width="30" height="30">
+                        <rect width="100" height="20"></rect>
+                        <rect y="30" width="100" height="20"></rect>
+                        <rect y="60" width="100" height="20"></rect>
+                  </svg>
               </button>
               </div>
               :
               <div>
 
-              <ul>
+              <ul className='nav-items__options'>
                 <li>
                   <span>Search jobs</span>
                   <form>
@@ -155,10 +127,10 @@ function Navbar({ handleThemeSwitch, button, params, onParamChange, theme}) {
                 </li>
               </ul>
               <ul className="nav-settings">
-                  {width < 960 && <li><button onChange={onParamChange} value={params.description} onClick={handleToggleMenu}>Close</button></li>}
                   <li><button onClick={handleThemeSwitch}>
                     {theme ==='dark' ? 'go light' : 'go dark'}
                     </button></li>     
+                  {width < 960 && <li><button onChange={onParamChange} value={params.description} onClick={handleToggleMenu}><svg height="20px" viewBox="0 0 329.26933 329" width="20px" xmlns="http://www.w3.org/2000/svg"><path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/></svg></button></li>}
                 </ul>
               </div>
           }

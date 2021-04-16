@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import ReactMarkdown from 'react-markdown'
 
 const Card = styled.div`
 padding: 1em;
@@ -22,7 +21,7 @@ gap:1em;
     flex-wrap:wrap;
     justify-content:space-between;
     gap:1em;
-    > *{
+    .card-header > *{
         width:100%;
         padding: 5px;
     }
@@ -95,6 +94,13 @@ function JobsCard({job}) {
         setDescriptionOpen(!isDescriptionOpen)
     }
 
+    const createMarkup = () =>{
+        const htmlElement = `
+        ${job.description}
+        `
+        return htmlElement
+    }
+
     return (
         <div>
         <Card>
@@ -117,10 +123,11 @@ function JobsCard({job}) {
             </div>
             
         </Card>
-      {
+            {
                 isDescriptionOpen &&
                     <CardOpen >
-                        {job.description}
+                        <div dangerouslySetInnerHTML={createMarkup()}/>
+                        <htmlElement/>
                     </CardOpen>
                 }
         </div>
